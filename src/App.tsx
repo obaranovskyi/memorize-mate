@@ -1,7 +1,9 @@
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
+    <div className="app">
+      <header className="app-header m-4">
         <h1>Memorize Mate</h1>
         This will help you to expand your vocabulary.
       </header>
