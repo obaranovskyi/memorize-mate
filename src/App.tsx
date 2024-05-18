@@ -2,7 +2,7 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        Memorize mate. Updated
+        Memorize mate. Version #1
       </header>
     </div >
   );
