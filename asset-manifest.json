@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/memorize-mate/static/css/main.9053b828.css",
-    "main.js": "/memorize-mate/static/js/main.5516652e.js",
+    "main.js": "/memorize-mate/static/js/main.5f8d7391.js",
     "static/js/453.84073d7d.chunk.js": "/memorize-mate/static/js/453.84073d7d.chunk.js",
     "index.html": "/memorize-mate/index.html",
     "main.9053b828.css.map": "/memorize-mate/static/css/main.9053b828.css.map",
-    "main.5516652e.js.map": "/memorize-mate/static/js/main.5516652e.js.map",
+    "main.5f8d7391.js.map": "/memorize-mate/static/js/main.5f8d7391.js.map",
     "453.84073d7d.chunk.js.map": "/memorize-mate/static/js/453.84073d7d.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.9053b828.css",
-    "static/js/main.5516652e.js"
+    "static/js/main.5f8d7391.js"
   ]
 }
