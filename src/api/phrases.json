@@ -1,6 +1,39 @@
 [
-  {
-    id: 1,
-    value: "This my first phrase"
-  }
+	{
+		"id": 1,
+		"question": "How to request time to think?",
+		"answers": [
+			"Just a moment",
+			"Give me a moment to consider it",
+			"Just a moment, I need to think about that",
+			"Let me take a moment to think it over"
+		]
+	},
+	{
+		"id": 2,
+		"question": "Giving the time",
+		"answers": ["Take your time", "Whenever your ready"]
+	},
+	{
+		"id": 3,
+		"question": "Talking about the preferences",
+		"answers": [
+			"I prefer ... over ...",
+			"... if that's your preference",
+			"... if that's what suits you"
+		]
+	},
+	{
+		"id": 4,
+		"question": "Repeating to understand whether you understood what was just said.",
+		"answer": [
+			"If I understand correctly",
+			"Let me see if I follow you correctly"
+		]
+	},
+	{
+		"id": 5,
+		"question": "Ask if someone looks to the problem.",
+		"answer": ["Are you on top of that?"]
+	}
 ]
