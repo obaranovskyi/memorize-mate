@@ -1,10 +1,7 @@
-type Props = {
-  value: string | number;
-  projectionFn?: (value: string | number) => any;
-};
+import { Cell as CellModel } from "./Models";
 
-const Cell = ({ value, projectionFn }: Props) => {
-  return (<td scope="col">
+const Cell = ({ value, projectionFn }: CellModel) => {
+  return (<td>
     {projectionFn ? projectionFn(value) : value}
   </td>);
   ;

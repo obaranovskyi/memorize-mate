@@ -118,7 +118,7 @@ const PhrasesPage = () => {
   return (
     <>
       {/* <p>Phrases page</p> */}
-      <Grid dataSource={{ data: data }}>
+      <Grid dataSource={{ data: data, pageSize: 15 }}>
         <Column field="id" title="ID"></Column>
         <Column field="name" title="Name"></Column>
         <Column field="age" title="Age"></Column>

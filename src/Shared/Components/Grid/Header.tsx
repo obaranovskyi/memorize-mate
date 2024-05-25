@@ -1,9 +1,6 @@
-type Props = {
-  value: string | number;
-  projectionFn?: (value: string | number) => any;
-};
+import { Header as HeaderModel } from "./Models";
 
-const Header = ({ value, projectionFn }: Props) => {
+const Header = ({ value, projectionFn }: HeaderModel) => {
   return (<th scope="col">
     {projectionFn ? projectionFn(value) : value}
   </th>);

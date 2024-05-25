@@ -1,4 +1,4 @@
-import ListGroup from "react-bootstrap/esm/ListGroup";
+import ListGroup from "react-bootstrap/ListGroup";
 import { NavLink } from "react-router-dom";
 
 const Content = () => {
