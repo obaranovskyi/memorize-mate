@@ -35,5 +35,22 @@
 		"id": 5,
 		"question": "Ask if someone looks to the problem.",
 		"answer": ["Are you on top of that?"]
+	},
+	{
+		"id": 6,
+		"question": "Ask about the questions at the end of the demo",
+		"answer": [
+			"Does anyone have any questions?",
+			"Any questions or comments?",
+			"Is there anything that wasn't clear?",
+		]
+	},
+	{
+		"id": 7,
+		"question": "Ask if someone has suggestions",
+		"answer": [
+			"Any thoughts on what I could improve?",
+			"Do you have any feedback or suggestions?"
+    ]
 	}
 ]
