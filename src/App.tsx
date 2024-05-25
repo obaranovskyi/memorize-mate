@@ -9,12 +9,16 @@ function App() {
   return (
     <Container>
       <Row className="justify-content-md-center mt-5">
-        <Col md={10} className="text-center">
+        <Col md={12} className="text-center">
           <h1>Memorize Mate</h1>
-          <div className="my-4">
-            <Content />
-          </div>
-          <Outlet />
+          <Row className="mt-5">
+            <Col xs={{ span: 12, order: 2 }} md={9}>
+              <Outlet />
+            </Col>
+            <Col xs={{ span: 12, order: 1 }} className="my-4" md={3}>
+              <Content />
+            </Col>
+          </Row>
         </Col>
       </Row>
     </Container>
