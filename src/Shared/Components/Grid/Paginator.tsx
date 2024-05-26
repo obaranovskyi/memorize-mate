@@ -25,14 +25,6 @@ const Paginator = ({ pages, currPage, onPageChange }: Props) => {
     );
   };
 
-  const first = () => {
-    onPageChange(1);
-  }
-
-  const last = () => {
-    onPageChange(pages.length);
-  }
-
   const toPaginationElement = (page: number) => {
     return (
       <Pagination.Item
@@ -57,13 +49,15 @@ const Paginator = ({ pages, currPage, onPageChange }: Props) => {
     if (currPage <= offset) {
       return [
         ...range(1, offset).map(toPaginationElement),
-        <Pagination.Ellipsis />
+        <Pagination.Ellipsis />,
+        toPaginationElement(pages.length)
       ];
     }
 
     // Current page is close to the end
     if (currPage >= pages.length - offset) {
       return [
+        toPaginationElement(1),
         <Pagination.Ellipsis />,
         ...range(pages.length - offset, pages.length)
           .map(toPaginationElement),
@@ -85,13 +79,15 @@ const Paginator = ({ pages, currPage, onPageChange }: Props) => {
 
   return (
     <Pagination>
-      <Pagination.First onClick={first} />
-      <Pagination.Prev onClick={prev} />
-
+      <Pagination.Prev
+        onClick={prev}
+        disabled={currPage === 1}
+      />
       {toPagination()}
-
-      <Pagination.Next onClick={next} />
-      <Pagination.Last onClick={last} />
+      <Pagination.Next
+        onClick={next}
+        disabled={currPage === pages.length}
+      />
     </Pagination>
   );
 }

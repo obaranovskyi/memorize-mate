@@ -7,6 +7,7 @@ import Cell from "./Cell";
 import Header from "./Header";
 import { ColumnType } from "./Models";
 import Paginator from "./Paginator";
+import Table from "react-bootstrap/Table";
 
 type Props = {
   children: ReactNode; // TODO: this should understand what components will be passed
@@ -50,7 +51,7 @@ const Grid = ({ children, dataSource }: Props) => {
   return (
     <Container>
       <Row>
-        <table className="table">
+        <Table striped bordered hover>
           <thead>
             <tr>
               {headers}
@@ -59,16 +60,15 @@ const Grid = ({ children, dataSource }: Props) => {
           <tbody>
             {trs}
           </tbody>
-        </table>
+        </Table>
       </Row>
-      <Row className="mt-4 justify-content-center">
-        <Col md={6}>
-          <Paginator
-            currPage={page}
-            pages={pages.map((_, index) => index + 1)}
-            onPageChange={setPage}
-          ></Paginator>
-        </Col>
+      <Row className="mt-4">
+        {/* TODO: Make pagination responsive */}
+        <Paginator
+          currPage={page}
+          pages={pages.map((_, index) => index + 1)}
+          onPageChange={setPage}
+        ></Paginator>
       </Row>
     </Container >
   );
