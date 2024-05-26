@@ -40,29 +40,27 @@ const Paginator = ({ pages, currPage, onPageChange }: Props) => {
   const toPagination = () => {
     const offset = 5;
     // Less than five pages
-    if (pages.length <= offset)
+    if (pages.length <= offset + 1) // not sure about + 1
       return pages.map((page) => {
         return toPaginationElement(page);
       });
 
     // Current page is close to the start
-    if (currPage <= offset) {
+    if (currPage <= offset)
       return [
         ...range(1, offset).map(toPaginationElement),
         <Pagination.Ellipsis />,
         toPaginationElement(pages.length)
       ];
-    }
 
     // Current page is close to the end
-    if (currPage >= pages.length - offset) {
+    if (currPage >= pages.length - offset)
       return [
         toPaginationElement(1),
         <Pagination.Ellipsis />,
-        ...range(pages.length - offset, pages.length)
+        ...range(pages.length - offset + 1, pages.length)
           .map(toPaginationElement),
       ];
-    }
 
     // Current page is in the middle
     return [
