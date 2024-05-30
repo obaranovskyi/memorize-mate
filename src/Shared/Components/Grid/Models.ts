@@ -16,3 +16,10 @@ export type ColumnType = {
   cellProjectionFn?: (value: CellType) => any;
   headerProjectionFn?: (value: HeaderType) => any;
 };
+
+export type SearchInput = {
+  isDisabled?: boolean;
+  placeholder: string;
+  ariaLabel?: string;
+  onSearch?: (searchValue: string) => any[];
+};

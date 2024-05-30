@@ -226,10 +226,14 @@ const PhrasesPage = () => {
     // { id: 22110, name: 'Olivia', age: 132, country: 'Iran' },
     // { id: 22111, name: 'Sophia', age: 133, country: 'Iraq' },
   ];
+
   return (
     <>
       {/* <p>Phrases page</p> */}
-      <Grid dataSource={{ data: data, pageSize: 15 }}>
+      <Grid
+        dataSource={{ data: data, pageSize: 15 }}
+        search={{ placeholder: 'Search users ...' }}
+      >
         <Column field="id" title="ID"></Column>
         <Column field="name" title="Name"></Column>
         <Column field="age" title="Age"></Column>

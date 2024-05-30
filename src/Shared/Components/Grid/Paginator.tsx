@@ -39,12 +39,17 @@ const Paginator = ({ pages, currPage, onPageChange }: Props) => {
 
   const toPagination = () => {
     const offset = 5;
+
+    // No items in the grid
+    if (!pages.length) return toPaginationElement(1);
+
     // Less than five pages
-    if (pages.length <= offset + 1) // not sure about + 1
+    if (pages.length <= offset + 1) {
       return pages.map((page) => {
         return toPaginationElement(page);
       });
 
+    }
     // Current page is close to the start
     if (currPage <= offset)
       return [

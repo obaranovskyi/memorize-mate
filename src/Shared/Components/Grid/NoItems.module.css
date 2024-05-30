@@ -1,0 +1,5 @@
+.no-items {
+  border: 1px solid lightgrey;
+  position: relative;
+  bottom: 17px;
+}
