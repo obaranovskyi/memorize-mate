@@ -1,7 +1,14 @@
-type HeaderType = string | number;
+export type SortDirection = "asc" | "desc";
+
 export type Header = {
-  value: HeaderType;
-  projectionFn?: (value: HeaderType) => any;
+  sort?: {
+    sortBy?: string;
+    sortDirection?: SortDirection;
+  };
+  value: string;
+  field: string;
+  projectionFn?: (value: string) => string;
+  onSortChanged: (sortBy: string, sortDirection: SortDirection) => void;
 };
 
 type CellType = string | number;
@@ -14,7 +21,7 @@ export type ColumnType = {
   title: string;
   field: string;
   cellProjectionFn?: (value: CellType) => any;
-  headerProjectionFn?: (value: HeaderType) => any;
+  headerProjectionFn?: (value: string) => string;
 };
 
 export type SearchInput = {

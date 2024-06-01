@@ -232,12 +232,13 @@ const PhrasesPage = () => {
       {/* <p>Phrases page</p> */}
       <Grid
         dataSource={{ data: data, pageSize: 15 }}
-        search={{ placeholder: 'Search users ...' }}
+        search={{ placeholder: "Search users ..." }}
+        sort={{ sortBy: "id", sortDirection: "asc" }}
       >
-        <Column field="id" title="ID"></Column>
-        <Column field="name" title="Name"></Column>
-        <Column field="age" title="Age"></Column>
-        <Column field="country" title="Country"></Column>
+        <Column field="id" title="ID" key="1"></Column>
+        <Column field="name" title="Name" key="2"></Column>
+        <Column field="age" title="Age" key="3"></Column>
+        <Column field="country" title="Country" key="4"></Column>
       </Grid>
     </>
   );

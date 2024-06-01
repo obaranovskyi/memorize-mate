@@ -2,10 +2,10 @@ import { Children, ReactNode, useState } from "react";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Form from "react-bootstrap/Form";
-import { chunk } from "../../Util/Array";
+import { chunk, sort as sortList } from "../../Util/Array";
 import Cell from "./Cell";
 import Header from "./Header";
-import { ColumnType, SearchInput } from "./Models";
+import { ColumnType, SearchInput, SortDirection } from "./Models";
 import Paginator from "./Paginator";
 import Table from "react-bootstrap/Table";
 import Col from "react-bootstrap/Col";
@@ -13,6 +13,10 @@ import NoItems from "./NoItems";
 
 type Props = {
   children: ReactNode; // TODO: this should understand what components will be passed
+  sort?: {
+    sortBy?: string;
+    sortDirection?: SortDirection;
+  };
   search?: SearchInput;
   dataSource: {
     data: any[];
@@ -21,17 +25,29 @@ type Props = {
   }
 }
 
-const Grid = ({ children, dataSource, search }: Props) => {
+const Grid = ({ children, dataSource, search, sort }: Props) => {
   const [page, setPage] = useState(dataSource.page || 1);
   const [pageSize] = useState(dataSource.pageSize);
   const [searchValue, setSearchValue] = useState('');
 
   const childrenArr = Children.toArray(children).map((c: any) => c.props) as ColumnType[];
+
+  const [sortBy, setSortBy] = useState(sort?.sortBy ?? childrenArr[0].field);
+  const [sortDirection, setSortDirection] = useState(sort?.sortDirection ?? 'asc');
+
+  const handleSortChange = (sortBy: string, sortDirection: SortDirection) => {
+    setSortBy(sortBy);
+    setSortDirection(sortDirection);
+  }
+
   const headers = childrenArr.map((item: ColumnType, index: number) =>
     <Header
       key={index}
       value={item.title}
       projectionFn={item.headerProjectionFn}
+      sort={{ sortBy, sortDirection }}
+      field={item.field}
+      onSortChanged={handleSortChange}
     />);
 
   const filteredData = search?.onSearch
@@ -41,7 +57,8 @@ const Grid = ({ children, dataSource, search }: Props) => {
         .some(key =>
           new RegExp(searchValue, 'gi').test((item as any)[key]))
     );
-  const pages = chunk(filteredData, pageSize);
+  const filteredSortedData = sortList(filteredData, sortDirection, sortBy);
+  const pages = chunk(filteredSortedData, pageSize);
   const pageRows = pages[page - 1] ?? [];
   const trs = pageRows
     .map((row: any, rowIndex: number) => {
@@ -69,7 +86,10 @@ const Grid = ({ children, dataSource, search }: Props) => {
             placeholder={search.placeholder}
             aria-label={search.ariaLabel ?? search.placeholder}
             disabled={search.isDisabled}
-            onChange={event => setSearchValue(event.target.value)}
+            onChange={event => {
+              setSearchValue(event.target.value);
+              setPage(1);
+            }}
           />
         </Col>
       </Row>}
