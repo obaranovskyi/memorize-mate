@@ -6,6 +6,7 @@ const Header = ({
   value,
   projectionFn,
   sort,
+  width,
   onSortChanged
 }: HeaderModel) => {
   const getArrow = () => {
@@ -20,25 +21,25 @@ const Header = ({
       size={12}
       className="mb-1"
     />
-  }
+  };
 
   const getReverseSortDirection = () => {
     return sort?.sortDirection === 'asc' && field === sort?.sortBy
       ? 'desc'
       : 'asc';
-  }
+  };
 
   return (
     <th
       scope="col"
       role="button"
+      {...(width ? { width } : {})}
       onClick={() => onSortChanged(field, getReverseSortDirection())}
     >
       <span>{projectionFn ? projectionFn(value) : value}</span>
       {getArrow()}
     </th>
   );
-  ;
-}
+};
 
 export default Header;

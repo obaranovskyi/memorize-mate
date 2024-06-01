@@ -10,6 +10,7 @@ import Paginator from "./Paginator";
 import Table from "react-bootstrap/Table";
 import Col from "react-bootstrap/Col";
 import NoItems from "./NoItems";
+import AmountPerPage from "./AmountPerPage";
 
 type Props = {
   children: ReactNode; // TODO: this should understand what components will be passed
@@ -27,8 +28,8 @@ type Props = {
 
 const Grid = ({ children, dataSource, search, sort }: Props) => {
   const [page, setPage] = useState(dataSource.page || 1);
-  const [pageSize] = useState(dataSource.pageSize);
   const [searchValue, setSearchValue] = useState('');
+  const [pageSize, setPageSize] = useState(dataSource.pageSize ?? 15);
 
   const childrenArr = Children.toArray(children).map((c: any) => c.props) as ColumnType[];
 
@@ -48,6 +49,7 @@ const Grid = ({ children, dataSource, search, sort }: Props) => {
       sort={{ sortBy, sortDirection }}
       field={item.field}
       onSortChanged={handleSortChange}
+      width={item.width}
     />);
 
   const filteredData = search?.onSearch
@@ -109,11 +111,19 @@ const Grid = ({ children, dataSource, search, sort }: Props) => {
       {!pageRows.length && <NoItems />}
       <Row className="mt-4">
         {/* TODO: Make pagination responsive */}
-        <Paginator
-          currPage={page}
-          pages={pages.map((_, index) => index + 1)}
-          onPageChange={setPage}
-        ></Paginator>
+        <Col md={10}>
+          <Paginator
+            currPage={page}
+            pages={pages.map((_, index) => index + 1)}
+            onPageChange={setPage}
+          />
+        </Col>
+        <Col md={2}>
+          <AmountPerPage
+            pageSize={pageSize}
+            onPageSizeChanged={(pageSize) => setPageSize(pageSize)}
+          />
+        </Col>
       </Row>
     </Container >
   );

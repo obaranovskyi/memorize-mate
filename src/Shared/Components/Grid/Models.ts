@@ -7,6 +7,7 @@ export type Header = {
   };
   value: string;
   field: string;
+  width?: string;
   projectionFn?: (value: string) => string;
   onSortChanged: (sortBy: string, sortDirection: SortDirection) => void;
 };
@@ -20,6 +21,7 @@ export type Cell = {
 export type ColumnType = {
   title: string;
   field: string;
+  width?: string;
   cellProjectionFn?: (value: CellType) => any;
   headerProjectionFn?: (value: string) => string;
 };
