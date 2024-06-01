@@ -18,7 +18,7 @@ const Header = ({
 
     return <Icon
       iconName={iconName}
-      size={12}
+      size={14}
       className="mb-1"
     />
   };

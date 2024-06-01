@@ -39,6 +39,7 @@ const Paginator = ({ pages, currPage, onPageChange }: Props) => {
 
   const toPagination = () => {
     const offset = 5;
+    const ellipsisKey = 1000000000;
 
     // No items in the grid
     if (!pages.length) return toPaginationElement(1);
@@ -54,7 +55,7 @@ const Paginator = ({ pages, currPage, onPageChange }: Props) => {
     if (currPage <= offset)
       return [
         ...range(1, offset).map(toPaginationElement),
-        <Pagination.Ellipsis />,
+        <Pagination.Ellipsis key={ellipsisKey} />,
         toPaginationElement(pages.length)
       ];
 
@@ -62,7 +63,7 @@ const Paginator = ({ pages, currPage, onPageChange }: Props) => {
     if (currPage >= pages.length - offset)
       return [
         toPaginationElement(1),
-        <Pagination.Ellipsis />,
+        <Pagination.Ellipsis key={ellipsisKey} />,
         ...range(pages.length - offset + 1, pages.length)
           .map(toPaginationElement),
       ];
@@ -70,11 +71,11 @@ const Paginator = ({ pages, currPage, onPageChange }: Props) => {
     // Current page is in the middle
     return [
       toPaginationElement(1),
-      <Pagination.Ellipsis />,
+      <Pagination.Ellipsis key={ellipsisKey} />,
       toPaginationElement(currPage - 1),
       toPaginationElement(currPage),
       toPaginationElement(currPage + 1),
-      <Pagination.Ellipsis />,
+      <Pagination.Ellipsis key={ellipsisKey + 1} />,
       toPaginationElement(pages.length)
     ];
 

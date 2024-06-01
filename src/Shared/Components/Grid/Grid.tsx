@@ -23,10 +23,17 @@ type Props = {
     data: any[];
     pageSize: number;
     page?: number;
-  }
+  },
+  noItemsLabel?: string;
 }
 
-const Grid = ({ children, dataSource, search, sort }: Props) => {
+const Grid = ({
+  children,
+  dataSource,
+  search,
+  sort,
+  noItemsLabel
+}: Props) => {
   const [page, setPage] = useState(dataSource.page || 1);
   const [searchValue, setSearchValue] = useState('');
   const [pageSize, setPageSize] = useState(dataSource.pageSize ?? 15);
@@ -107,21 +114,19 @@ const Grid = ({ children, dataSource, search, sort }: Props) => {
           </tbody>
         </Table>
       </Row>
-      {/* TODO: Pass optional label */}
-      {!pageRows.length && <NoItems />}
-      <Row className="mt-4">
-        {/* TODO: Make pagination responsive */}
-        <Col md={10}>
+      {!pageRows.length && <NoItems label={noItemsLabel} />}
+      <Row className="my-4">
+        <Col xs={12} md={10}>
           <Paginator
             currPage={page}
             pages={pages.map((_, index) => index + 1)}
             onPageChange={setPage}
           />
         </Col>
-        <Col md={2}>
+        <Col xs={12} md={2}>
           <AmountPerPage
             pageSize={pageSize}
-            onPageSizeChanged={(pageSize) => setPageSize(pageSize)}
+            onPageSizeChanged={pageSize => setPageSize(pageSize)}
           />
         </Col>
       </Row>

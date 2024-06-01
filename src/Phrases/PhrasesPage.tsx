@@ -234,6 +234,7 @@ const PhrasesPage = () => {
         dataSource={{ data: data, pageSize: 15 }}
         search={{ placeholder: "Search users ..." }}
         sort={{ sortBy: "id", sortDirection: "asc" }}
+        noItemsLabel="No users found"
       >
         <Column field="id" title="ID" width="15%" key="1"></Column>
         <Column field="name" title="Name" width="35%" key="2"></Column>
