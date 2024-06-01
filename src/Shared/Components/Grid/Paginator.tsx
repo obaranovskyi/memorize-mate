@@ -9,6 +9,7 @@ type Props = {
 }
 
 const Paginator = ({ pages, currPage, onPageChange }: Props) => {
+  const styles = { fontSize: '0.8rem' };
   const prev = () => {
     onPageChange(
       currPage > 1
@@ -31,9 +32,10 @@ const Paginator = ({ pages, currPage, onPageChange }: Props) => {
         onClick={() => onPageChange(page)}
         active={page === currPage}
         key={page}
+        linkStyle={styles}
       >
         {page}
-      </Pagination.Item>
+      </Pagination.Item >
     );
   }
 
@@ -52,18 +54,18 @@ const Paginator = ({ pages, currPage, onPageChange }: Props) => {
 
     }
     // Current page is close to the start
-    if (currPage <= offset)
+    if (currPage < offset)
       return [
         ...range(1, offset).map(toPaginationElement),
-        <Pagination.Ellipsis key={ellipsisKey} />,
+        <Pagination.Ellipsis key={ellipsisKey} linkStyle={styles} />,
         toPaginationElement(pages.length)
       ];
 
     // Current page is close to the end
-    if (currPage >= pages.length - offset)
+    if (currPage >= pages.length - offset + 2)
       return [
         toPaginationElement(1),
-        <Pagination.Ellipsis key={ellipsisKey} />,
+        <Pagination.Ellipsis key={ellipsisKey} linkStyle={styles} />,
         ...range(pages.length - offset + 1, pages.length)
           .map(toPaginationElement),
       ];
@@ -71,11 +73,12 @@ const Paginator = ({ pages, currPage, onPageChange }: Props) => {
     // Current page is in the middle
     return [
       toPaginationElement(1),
-      <Pagination.Ellipsis key={ellipsisKey} />,
+      <Pagination.Ellipsis key={ellipsisKey} linkStyle={styles} />,
+
       toPaginationElement(currPage - 1),
       toPaginationElement(currPage),
       toPaginationElement(currPage + 1),
-      <Pagination.Ellipsis key={ellipsisKey + 1} />,
+      <Pagination.Ellipsis key={ellipsisKey + 1} linkStyle={styles} />,
       toPaginationElement(pages.length)
     ];
 
@@ -86,11 +89,13 @@ const Paginator = ({ pages, currPage, onPageChange }: Props) => {
       <Pagination.Prev
         onClick={prev}
         disabled={currPage === 1}
+        linkStyle={styles}
       />
       {toPagination()}
       <Pagination.Next
         onClick={next}
         disabled={currPage === pages.length}
+        linkStyle={styles}
       />
     </Pagination>
   );

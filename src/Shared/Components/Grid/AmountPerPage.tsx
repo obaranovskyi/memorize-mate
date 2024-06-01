@@ -11,6 +11,7 @@ const AmountPerPage = ({ pageSize, onPageSizeChanged }: Props) => {
       aria-label="Amount per page"
       value={pageSize}
       onChange={e => onPageSizeChanged(+e.target.value)}
+      size="sm"
       as="select"
     >
       <option value="5">5</option>

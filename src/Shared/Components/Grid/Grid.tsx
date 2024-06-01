@@ -116,14 +116,14 @@ const Grid = ({
       </Row>
       {!pageRows.length && <NoItems label={noItemsLabel} />}
       <Row className="my-4">
-        <Col xs={12} md={10}>
+        <Col xs={12} md={10} className="p-0">
           <Paginator
             currPage={page}
             pages={pages.map((_, index) => index + 1)}
             onPageChange={setPage}
           />
         </Col>
-        <Col xs={12} md={2}>
+        <Col xs={12} md={2} className="p-0">
           <AmountPerPage
             pageSize={pageSize}
             onPageSizeChanged={pageSize => setPageSize(pageSize)}
