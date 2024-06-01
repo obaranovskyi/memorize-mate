@@ -3,9 +3,15 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Content from './Content/Components/Content';
-import { Outlet } from 'react-router-dom';
+import { Outlet, useNavigate } from 'react-router-dom';
+
 
 function App() {
+  const user = localStorage.getItem('user');
+  const navigate = useNavigate();
+
+  if (!user) navigate('/sign-in');
+
   return (
     <Container>
       <Row className="justify-content-md-center mt-5">
